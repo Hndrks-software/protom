@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aanvraag ontvangen — PROTOM</title>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Barlow', sans-serif;
+            background: linear-gradient(135deg, #4d8ae8 0%, #1a3060 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 56px 48px;
+            max-width: 520px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 24px 64px rgba(0,0,0,0.2);
+            animation: fadeUp 0.5s ease;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .check-circle {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #4d8ae8, #1a3060);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 28px;
+            font-size: 1.8rem;
+            color: white;
+        }
+
+        .logo {
+            margin-bottom: 32px;
+        }
+        .logo img {
+            height: 48px;
+            width: auto;
+        }
+
+        h1 {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 900;
+            font-size: 2.2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            color: #1a3060;
+            margin-bottom: 16px;
+            line-height: 1.05;
+        }
+
+        p {
+            font-size: 0.95rem;
+            color: #5a6a8a;
+            line-height: 1.75;
+            margin-bottom: 36px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #4d8ae8, #1a3060);
+            color: white;
+            text-decoration: none;
+            padding: 13px 28px;
+            border-radius: 8px;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 0.95rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            box-shadow: 0 4px 18px rgba(39,87,184,0.35);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(39,87,184,0.5);
+        }
+
+        .footer-note {
+            margin-top: 28px;
+            font-size: 0.8rem;
+            color: #a0aec0;
+        }
+        .footer-note a {
+            color: #2757b8;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="logo">
+            <img src="ProTom.svg" alt="PROTOM">
+        </div>
+        <div class="check-circle">✓</div>
+        <h1>Aanvraag ontvangen!</h1>
+        <p>Bedankt voor uw bericht. We nemen zo snel mogelijk contact met u op.</p>
+        <a href="/" class="btn">← Terug naar de website</a>
+        <div class="footer-note">
+            Vragen? Mail naar <a href="mailto:tom@pro-tom.com">tom@pro-tom.com</a>
+        </div>
+    </div>
+</body>
+</html>

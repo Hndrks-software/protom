@@ -208,6 +208,7 @@
             transition: color 0.2s;
         }
         .nav-links a:hover { color: #fff; }
+        .nav-links a.active { color: #fff; font-weight: 600; }
 
         /* Hamburger */
         .hamburger {
@@ -724,16 +725,7 @@
             position: relative;
             overflow: hidden;
         }
-        #contact::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image:
-                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-            background-size: 44px 44px;
-            pointer-events: none;
-        }
+        #contact::before { display: none; }
 
         .contact-grid {
             display: grid;
@@ -996,13 +988,207 @@
         }
 
         @media (max-width: 480px) {
-            .sectors-grid { grid-template-columns: repeat(2, 1fr); }
             .brands-row { gap: 12px; }
             .contact-form-wrap { padding: 32px 22px; }
         }
+
+        /* ============================================================
+           PROGRESS BAR
+        ============================================================ */
+        #progress-bar {
+            position: fixed;
+            top: 0; left: 0;
+            height: 3px;
+            width: 0%;
+            background: linear-gradient(90deg, #4d8ae8, #fff, #4d8ae8);
+            z-index: 10001;
+            border-radius: 0 2px 2px 0;
+        }
+
+        /* ============================================================
+           CUSTOM CURSOR
+        ============================================================ */
+        .cursor-dot {
+            position: fixed;
+            width: 7px; height: 7px;
+            background: #fff;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 99998;
+            transform: translate(-50%, -50%);
+            mix-blend-mode: difference;
+        }
+        .cursor-ring {
+            position: fixed;
+            width: 32px; height: 32px;
+            border: 1.5px solid rgba(77,138,232,0.55);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 99997;
+            transform: translate(-50%, -50%);
+            transition: width 0.25s ease, height 0.25s ease, border-color 0.2s;
+        }
+        .cursor-ring.hovered { width: 52px; height: 52px; border-color: rgba(77,138,232,0.9); }
+        @media (hover: none) { .cursor-dot, .cursor-ring { display: none; } }
+
+        /* ============================================================
+           WORD-BY-WORD ANIMATIE
+        ============================================================ */
+        .word-wrap {
+            display: inline-block;
+            overflow: hidden;
+            vertical-align: bottom;
+        }
+        .word-wrap .w {
+            display: inline-block;
+            transform: translateY(110%);
+            opacity: 0;
+            transition: transform 0.55s cubic-bezier(0.16,1,0.3,1), opacity 0.4s ease;
+        }
+        .word-wrap .w.in { transform: translateY(0); opacity: 1; }
+
+        /* ============================================================
+           STATS STRIP
+        ============================================================ */
+        #stats-strip {
+            padding: 72px 0;
+            background: var(--primary);
+        }
+        .stats-strip-inner {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 28px;
+        }
+        .strip-stat {
+            text-align: center;
+            padding: 0 20px;
+            position: relative;
+        }
+        .strip-stat + .strip-stat::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 15%; height: 70%;
+            width: 1px;
+            background: rgba(255,255,255,0.12);
+        }
+        .strip-num {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 900;
+            font-size: clamp(2.5rem, 4vw, 3.6rem);
+            color: #fff;
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+        .strip-num em { color: #7fc3ff; font-style: normal; }
+        .strip-lbl {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: rgba(255,255,255,0.5);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        @media (max-width: 768px) {
+            .stats-strip-inner { grid-template-columns: repeat(2, 1fr); gap: 40px 0; }
+        }
+
+        /* ============================================================
+           TICKER MERKEN
+        ============================================================ */
+        .ticker-outer {
+            overflow: hidden;
+            position: relative;
+        }
+        .ticker-outer::before, .ticker-outer::after {
+            content: '';
+            position: absolute;
+            top: 0; bottom: 0;
+            width: 100px;
+            z-index: 2;
+            pointer-events: none;
+        }
+        .ticker-outer::before { left: 0;  background: linear-gradient(to right, #fff, transparent); }
+        .ticker-outer::after  { right: 0; background: linear-gradient(to left,  #fff, transparent); }
+        .ticker-track {
+            display: flex;
+            width: max-content;
+            animation: ticker 22s linear infinite;
+        }
+        .ticker-track:hover { animation-play-state: paused; }
+        @keyframes ticker {
+            from { transform: translateX(0); }
+            to   { transform: translateX(-50%); }
+        }
+        .ticker-item {
+            display: flex;
+            align-items: center;
+            padding: 0 36px;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #b0bdd5;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            white-space: nowrap;
+            transition: color 0.2s;
+            cursor: default;
+            gap: 36px;
+        }
+        .ticker-item:hover { color: var(--secondary); }
+        .ticker-sep { color: #d0daea; font-size: 1.4rem; flex-shrink: 0; }
+
+        /* ============================================================
+           SECTOREN SLIDER (mobiel)
+        ============================================================ */
+        @media (max-width: 768px) {
+            #sectoren .container { padding: 0; }
+            #sectoren .section-header { padding: 0 24px; }
+            .sectors-grid {
+                display: flex !important;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                -webkit-overflow-scrolling: touch;
+                gap: 12px;
+                padding: 4px 24px 20px;
+                scrollbar-width: none;
+                grid-template-columns: unset;
+            }
+            .sectors-grid::-webkit-scrollbar { display: none; }
+            .sector-tile {
+                flex: 0 0 148px;
+                scroll-snap-align: start;
+            }
+        }
+
+        /* ============================================================
+           FOOTER MAP
+        ============================================================ */
+        .footer-map {
+            margin-top: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            height: 150px;
+        }
+        .footer-map iframe {
+            width: 100%; height: 100%;
+            border: none;
+            filter: grayscale(25%) brightness(0.9);
+        }
+
+        /* Active nav */
+        .nav-links a.active { color: #fff !important; font-weight: 600; }
     </style>
 </head>
 <body>
+
+<!-- Progress bar -->
+<div id="progress-bar"></div>
+
+<!-- Custom cursor -->
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
 
 <!-- ================================================================
      PRELOADER
@@ -1122,14 +1308,22 @@
             Groothandel voor de professionele markt
         </div>
 
-        <h1>Lorem Ipsum Dolor Sit Amet Consectetur Adipiscing</h1>
+        <h1 id="heroHeadline">
+            <span class="word-wrap"><span class="w">Lorem</span></span>&nbsp;
+            <span class="word-wrap"><span class="w">Ipsum</span></span>&nbsp;
+            <span class="word-wrap"><span class="w">Dolor</span></span>&nbsp;
+            <span class="word-wrap"><span class="w">Sit</span></span>&nbsp;
+            <span class="word-wrap"><span class="w">Amet</span></span>&nbsp;
+            <span class="word-wrap"><span class="w">Consectetur</span></span>&nbsp;
+            <span class="word-wrap"><span class="w">Adipiscing</span></span>
+        </h1>
 
         <p class="hero-sub">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
         </p>
 
         <div class="hero-ctas">
-            <a href="#contact" class="btn btn-primary">
+            <a href="#contact" class="btn btn-nav-cta">
                 <i class="fa-regular fa-paper-plane"></i> Offerte aanvragen
             </a>
             <a href="#producten" class="btn btn-outline">
@@ -1139,15 +1333,15 @@
 
         <div class="hero-stats">
             <div class="stat-block">
-                <div class="stat-num">25<span>+</span></div>
+                <div class="stat-num counter" data-target="25" data-suffix="+">0+</div>
                 <div class="stat-lbl">Lorem ipsum label</div>
             </div>
             <div class="stat-block">
-                <div class="stat-num">500<span>+</span></div>
+                <div class="stat-num counter" data-target="500" data-suffix="+">0+</div>
                 <div class="stat-lbl">Lorem ipsum label</div>
             </div>
             <div class="stat-block">
-                <div class="stat-num">99<span>%</span></div>
+                <div class="stat-num counter" data-target="99" data-suffix="%">0%</div>
                 <div class="stat-lbl">Lorem ipsum label</div>
             </div>
         </div>
@@ -1239,6 +1433,31 @@
 
 
 <!-- ================================================================
+     STATS STRIP
+================================================================ -->
+<section id="stats-strip">
+    <div class="stats-strip-inner">
+        <div class="strip-stat fade-up">
+            <div class="strip-num counter" data-target="25" data-suffix="+">0<em>+</em></div>
+            <div class="strip-lbl">Lorem ipsum label</div>
+        </div>
+        <div class="strip-stat fade-up d1">
+            <div class="strip-num counter" data-target="500" data-suffix="+">0<em>+</em></div>
+            <div class="strip-lbl">Lorem ipsum label</div>
+        </div>
+        <div class="strip-stat fade-up d2">
+            <div class="strip-num counter" data-target="15" data-suffix="+">0<em>+</em></div>
+            <div class="strip-lbl">Lorem ipsum label</div>
+        </div>
+        <div class="strip-stat fade-up d3">
+            <div class="strip-num counter" data-target="99" data-suffix="%">0<em>%</em></div>
+            <div class="strip-lbl">Lorem ipsum label</div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ================================================================
      SECTOREN
 ================================================================ -->
 <section id="sectoren">
@@ -1293,13 +1512,23 @@
 <section id="merken">
     <div class="container">
         <p class="merken-label">Onze merken &amp; partners</p>
-        <div class="brands-row fade-up">
-            <div class="brand-pill">Merknaam 1</div>
-            <div class="brand-pill">Merknaam 2</div>
-            <div class="brand-pill">Merknaam 3</div>
-            <div class="brand-pill">Merknaam 4</div>
-            <div class="brand-pill">Merknaam 5</div>
-            <div class="brand-pill">Merknaam 6</div>
+    </div>
+    <div class="ticker-outer">
+        <div class="ticker-track">
+            <!-- Set 1 -->
+            <div class="ticker-item">Merknaam 1 <span class="ticker-sep">·</span></div>
+            <div class="ticker-item">Merknaam 2 <span class="ticker-sep">·</span></div>
+            <div class="ticker-item">Merknaam 3 <span class="ticker-sep">·</span></div>
+            <div class="ticker-item">Merknaam 4 <span class="ticker-sep">·</span></div>
+            <div class="ticker-item">Merknaam 5 <span class="ticker-sep">·</span></div>
+            <div class="ticker-item">Merknaam 6 <span class="ticker-sep">·</span></div>
+            <!-- Set 2 (duplicaat voor loop) -->
+            <div class="ticker-item">Merknaam 1 <span class="ticker-sep">·</span></div>
+            <div class="ticker-item">Merknaam 2 <span class="ticker-sep">·</span></div>
+            <div class="ticker-item">Merknaam 3 <span class="ticker-sep">·</span></div>
+            <div class="ticker-item">Merknaam 4 <span class="ticker-sep">·</span></div>
+            <div class="ticker-item">Merknaam 5 <span class="ticker-sep">·</span></div>
+            <div class="ticker-item">Merknaam 6 <span class="ticker-sep">·</span></div>
         </div>
     </div>
 </section>
@@ -1356,7 +1585,7 @@
             <!-- Right: form -->
             <div class="contact-form-wrap fade-up d1">
                 <h3>Stuur ons een bericht</h3>
-                <form id="contactForm" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+                <form id="contactForm" name="contact" method="POST" action="/success.html" data-netlify="true" netlify-honeypot="bot-field" novalidate>
                     <input type="hidden" name="form-name" value="contact">
                     <input type="hidden" name="bot-field" style="display:none;">
                     <div class="form-row">
@@ -1445,11 +1674,14 @@
                 </div>
                 <div class="foot-contact-row">
                     <i class="fa-solid fa-location-dot"></i>
-                    <span>Lorem Ipsum Straat 1,<br>Nederland</span>
+                    <span>Goudwerf 2,<br>6641 TG Beuningen</span>
                 </div>
                 <div class="foot-contact-row">
                     <i class="fa-brands fa-linkedin-in" style="color:#0a66c2; font-size:0.9rem; margin-top:2px; flex-shrink:0; width:14px;"></i>
                     <a href="https://www.linkedin.com/company/pro-tom/" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.46); text-decoration:none; font-size:0.86rem; transition:color 0.2s;">Volg ons op LinkedIn</a>
+                </div>
+                <div class="footer-map">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2469.0!2d5.7697!3d51.8697!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c70b0b0b0b0b0b%3A0x0!2sGoudwerf+2%2C+6641+TG+Beuningen!5e0!3m2!1snl!2snl!4v1" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
 
@@ -1498,25 +1730,25 @@
         requestAnimationFrame(step);
     })();
 
-    /* --- Navbar scroll shadow --- */
+    /* -------------------------------------------------------
+       NAVBAR SCROLL
+    ------------------------------------------------------- */
     const navbar = document.getElementById('navbar');
-    const onScroll = () => {
+    window.addEventListener('scroll', () => {
         navbar.classList.toggle('scrolled', window.scrollY > 40);
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
+    }, { passive: true });
 
-    /* --- Hamburger / mobile drawer --- */
+    /* -------------------------------------------------------
+       HAMBURGER / MOBILE DRAWER
+    ------------------------------------------------------- */
     const hamburger = document.getElementById('hamburger');
     const drawer    = document.getElementById('mobileDrawer');
-
     hamburger.addEventListener('click', () => {
         const open = drawer.classList.toggle('open');
         hamburger.classList.toggle('active', open);
         hamburger.setAttribute('aria-expanded', open);
         document.body.style.overflow = open ? 'hidden' : '';
     });
-
-    // Close drawer on any link inside it
     drawer.querySelectorAll('a').forEach(a => {
         a.addEventListener('click', () => {
             drawer.classList.remove('open');
@@ -1526,28 +1758,146 @@
         });
     });
 
-    /* --- Scroll-triggered fade-up animations --- */
-    const fadeEls = document.querySelectorAll('.fade-up');
-    const io = new IntersectionObserver((entries) => {
-        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-    fadeEls.forEach(el => io.observe(el));
+    /* -------------------------------------------------------
+       PROGRESS BAR
+    ------------------------------------------------------- */
+    const progressBar = document.getElementById('progress-bar');
+    window.addEventListener('scroll', () => {
+        const total   = document.documentElement.scrollHeight - window.innerHeight;
+        const percent = (window.scrollY / total) * 100;
+        progressBar.style.width = percent + '%';
+    }, { passive: true });
 
-    /* --- Smooth scroll for anchor links (offset for sticky nav) --- */
+    /* -------------------------------------------------------
+       CUSTOM CURSOR
+    ------------------------------------------------------- */
+    const dot  = document.getElementById('cursorDot');
+    const ring = document.getElementById('cursorRing');
+    let mx = -100, my = -100, rx = -100, ry = -100;
+
+    window.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+
+    function animateCursor() {
+        rx += (mx - rx) * 0.12;
+        ry += (my - ry) * 0.12;
+        dot.style.left  = mx + 'px';
+        dot.style.top   = my + 'px';
+        ring.style.left = rx + 'px';
+        ring.style.top  = ry + 'px';
+        requestAnimationFrame(animateCursor);
+    }
+    animateCursor();
+
+    document.querySelectorAll('a, button, .product-card, .sector-tile, .usp-card').forEach(el => {
+        el.addEventListener('mouseenter', () => ring.classList.add('hovered'));
+        el.addEventListener('mouseleave', () => ring.classList.remove('hovered'));
+    });
+
+    /* -------------------------------------------------------
+       ACTIVE NAV LINKS
+    ------------------------------------------------------- */
+    const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+    const sections = ['hero','producten','over','sectoren','merken','contact'].map(id => document.getElementById(id)).filter(Boolean);
+
+    window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(sec => {
+            if (window.scrollY >= sec.offsetTop - 120) current = sec.id;
+        });
+        navLinks.forEach(a => {
+            a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+        });
+    }, { passive: true });
+
+    /* -------------------------------------------------------
+       SMOOTH SCROLL
+    ------------------------------------------------------- */
     document.querySelectorAll('a[href^="#"]').forEach(link => {
         link.addEventListener('click', e => {
             const target = document.querySelector(link.getAttribute('href'));
             if (!target) return;
             e.preventDefault();
-            const top = target.getBoundingClientRect().top + window.scrollY - 80;
-            window.scrollTo({ top, behavior: 'smooth' });
+            window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - 80, behavior: 'smooth' });
         });
     });
 
-    /* --- Contact form --- */
+    /* -------------------------------------------------------
+       FADE-UP ANIMATIES
+    ------------------------------------------------------- */
+    const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
+
+    /* -------------------------------------------------------
+       WORD-BY-WORD HEADLINE
+    ------------------------------------------------------- */
+    setTimeout(() => {
+        document.querySelectorAll('#heroHeadline .w').forEach((w, i) => {
+            setTimeout(() => w.classList.add('in'), i * 80);
+        });
+    }, 1900); // na preloader
+
+    /* -------------------------------------------------------
+       COUNTER ANIMATIE
+    ------------------------------------------------------- */
+    function animateCounter(el) {
+        const target   = parseInt(el.dataset.target);
+        const suffix   = el.dataset.suffix || '';
+        const duration = 1600;
+        const start    = performance.now();
+
+        function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
+
+        // Strip-num has <em> for suffix, hero stat-num uses <span>
+        const hasEm   = el.querySelector('em');
+        const hasSufx = el.querySelector('span');
+
+        function tick(now) {
+            const t   = Math.min((now - start) / duration, 1);
+            const val = Math.round(easeOut(t) * target);
+            if (hasEm)        el.innerHTML = val + '<em>' + suffix + '</em>';
+            else if (hasSufx) el.innerHTML = val + '<span>' + suffix + '</span>';
+            else              el.textContent = val + suffix;
+            if (t < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+    }
+
+    const counterIO = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+            if (e.isIntersecting) {
+                animateCounter(e.target);
+                counterIO.unobserve(e.target);
+            }
+        });
+    }, { threshold: 0.3 });
+    document.querySelectorAll('.counter').forEach(el => counterIO.observe(el));
+
+    /* -------------------------------------------------------
+       3D TILT OP PRODUCTKAARTEN
+    ------------------------------------------------------- */
+    document.querySelectorAll('.product-card').forEach(card => {
+        card.addEventListener('mousemove', e => {
+            const rect   = card.getBoundingClientRect();
+            const x      = e.clientX - rect.left;
+            const y      = e.clientY - rect.top;
+            const cx     = rect.width  / 2;
+            const cy     = rect.height / 2;
+            const rotateX = ((y - cy) / cy) * -6;
+            const rotateY = ((x - cx) / cx) *  6;
+            card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px)`;
+        });
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = '';
+        });
+    });
+
+    /* -------------------------------------------------------
+       CONTACT FORM
+    ------------------------------------------------------- */
     const form      = document.getElementById('contactForm');
     const submitBtn = document.getElementById('submitBtn');
-
     form.addEventListener('submit', e => {
         if (!form.checkValidity()) { e.preventDefault(); form.reportValidity(); return; }
         submitBtn.disabled = true;
