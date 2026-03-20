@@ -1226,12 +1226,12 @@
     <div class="container">
         <p class="merken-label">Onze merken &amp; partners</p>
         <div class="brands-row fade-up">
-            <div class="brand-pill">Merk Alpha</div>
-            <div class="brand-pill">BrandCo</div>
-            <div class="brand-pill">TechPaint</div>
-            <div class="brand-pill">OiloMax</div>
-            <div class="brand-pill">CleanPro</div>
-            <div class="brand-pill">InduStrip</div>
+            <div class="brand-pill">Merknaam 1</div>
+            <div class="brand-pill">Merknaam 2</div>
+            <div class="brand-pill">Merknaam 3</div>
+            <div class="brand-pill">Merknaam 4</div>
+            <div class="brand-pill">Merknaam 5</div>
+            <div class="brand-pill">Merknaam 6</div>
         </div>
     </div>
 </section>
@@ -1274,10 +1274,10 @@
                         </div>
                     </div>
                     <div class="cd-row">
-                        <div class="cd-icon"><i class="fa-solid fa-globe"></i></div>
+                        <div class="cd-icon"><i class="fa-brands fa-linkedin-in"></i></div>
                         <div>
-                            <div class="cd-info-lbl">Website</div>
-                            <div class="cd-info-val"><a href="https://pro-tom.com" target="_blank" rel="noopener">pro-tom.com</a></div>
+                            <div class="cd-info-lbl">LinkedIn</div>
+                            <div class="cd-info-val"><a href="https://www.linkedin.com/company/pro-tom/" target="_blank" rel="noopener">linkedin.com/company/pro-tom</a></div>
                         </div>
                     </div>
                 </div>
@@ -1376,8 +1376,8 @@
                     <span>Lorem Ipsum Straat 1,<br>Nederland</span>
                 </div>
                 <div class="foot-contact-row">
-                    <i class="fa-solid fa-globe"></i>
-                    <a href="https://pro-tom.com" target="_blank" rel="noopener">pro-tom.com</a>
+                    <i class="fa-brands fa-linkedin-in"></i>
+                    <a href="https://www.linkedin.com/company/pro-tom/" target="_blank" rel="noopener">linkedin.com/company/pro-tom</a>
                 </div>
             </div>
 
@@ -1471,5 +1471,36 @@
         }, 1400);
     });
 </script>
+<!-- Preview melding -->
+<div id="preview-toast" style="
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: white;
+    border-left: 4px solid #2757b8;
+    border-radius: 10px;
+    padding: 16px 20px;
+    box-shadow: 0 8px 32px rgba(26,48,96,0.18);
+    z-index: 9999;
+    max-width: 280px;
+    font-family: 'Barlow', sans-serif;
+    animation: slideIn 0.4s ease;
+">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px;">
+        <div>
+            <div style="font-weight:700; font-size:0.95rem; color:#1a3060; margin-bottom:6px;">👋 Hi Tom, dit is V1!</div>
+            <div style="font-size:0.82rem; color:#5a6a8a; line-height:1.5;">Voor vragen: <a href="mailto:hello@florishndrks.com" style="color:#2757b8; text-decoration:none; font-weight:600;">hello@florishndrks.com</a></div>
+        </div>
+        <button onclick="document.getElementById('preview-toast').remove()" style="background:none; border:none; cursor:pointer; color:#a0aec0; font-size:1.1rem; padding:0; line-height:1; flex-shrink:0;">✕</button>
+    </div>
+</div>
+
+<style>
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+</style>
+
 </body>
 </html>
