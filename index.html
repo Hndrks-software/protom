@@ -1005,6 +1005,75 @@
 <body>
 
 <!-- ================================================================
+     PRELOADER
+================================================================ -->
+<div id="preloader">
+    <div class="preloader-content">
+        <img src="ProTom.svg" alt="PROTOM" class="preloader-logo">
+        <div class="preloader-bar-wrap">
+            <div class="preloader-bar" id="preloaderBar"></div>
+        </div>
+    </div>
+</div>
+
+<style>
+    #preloader {
+        position: fixed;
+        inset: 0;
+        z-index: 99999;
+        background: linear-gradient(135deg, #4d8ae8 0%, #1a3060 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: opacity 0.55s ease, visibility 0.55s ease;
+    }
+    #preloader.hidden {
+        opacity: 0;
+        visibility: hidden;
+    }
+    .preloader-grid {
+        position: absolute;
+        inset: 0;
+        background-image:
+            linear-gradient(rgba(255,255,255,0.045) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255,255,255,0.045) 1px, transparent 1px);
+        background-size: 44px 44px;
+        pointer-events: none;
+    }
+    .preloader-content {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 32px;
+    }
+    .preloader-logo {
+        height: 80px;
+        width: auto;
+        animation: logoPulse 1.6s ease-in-out infinite;
+    }
+    @keyframes logoPulse {
+        0%, 100% { opacity: 1; transform: scale(1); }
+        50%       { opacity: 0.85; transform: scale(0.97); }
+    }
+    .preloader-bar-wrap {
+        width: 200px;
+        height: 3px;
+        background: rgba(255,255,255,0.18);
+        border-radius: 100px;
+        overflow: hidden;
+    }
+    .preloader-bar {
+        height: 100%;
+        width: 0%;
+        background: #fff;
+        border-radius: 100px;
+        transition: width 0.1s linear;
+    }
+</style>
+
+<!-- ================================================================
      NAVBAR
 ================================================================ -->
 <nav id="navbar">
@@ -1046,7 +1115,6 @@
      HERO
 ================================================================ -->
 <section id="hero">
-    <div class="hero-grid" aria-hidden="true"></div>
     <div class="hero-blob" aria-hidden="true"></div>
     <div class="hero-content container">
         <div class="hero-badge">
@@ -1270,14 +1338,16 @@
                         <div class="cd-icon"><i class="fa-solid fa-location-dot"></i></div>
                         <div>
                             <div class="cd-info-lbl">Adres</div>
-                            <div class="cd-info-val">Lorem Ipsum Straat 1, Nederland</div>
+                            <div class="cd-info-val">Goudwerf 2, 6641 TG Beuningen</div>
                         </div>
                     </div>
                     <div class="cd-row">
-                        <div class="cd-icon"><i class="fa-brands fa-linkedin-in"></i></div>
+                        <div class="cd-icon" style="background:#0a66c2; border:none;">
+                            <i class="fa-brands fa-linkedin-in" style="color:#fff; font-size:1rem;"></i>
+                        </div>
                         <div>
                             <div class="cd-info-lbl">LinkedIn</div>
-                            <div class="cd-info-val"><a href="https://www.linkedin.com/company/pro-tom/" target="_blank" rel="noopener">linkedin.com/company/pro-tom</a></div>
+                            <div class="cd-info-val"><a href="https://www.linkedin.com/company/pro-tom/" target="_blank" rel="noopener">Volg ons op LinkedIn</a></div>
                         </div>
                     </div>
                 </div>
@@ -1286,7 +1356,9 @@
             <!-- Right: form -->
             <div class="contact-form-wrap fade-up d1">
                 <h3>Stuur ons een bericht</h3>
-                <form id="contactForm" novalidate>
+                <form id="contactForm" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+                    <input type="hidden" name="form-name" value="contact">
+                    <input type="hidden" name="bot-field" style="display:none;">
                     <div class="form-row">
                         <div class="form-group">
                             <label for="naam">Naam</label>
@@ -1376,8 +1448,8 @@
                     <span>Lorem Ipsum Straat 1,<br>Nederland</span>
                 </div>
                 <div class="foot-contact-row">
-                    <i class="fa-brands fa-linkedin-in"></i>
-                    <a href="https://www.linkedin.com/company/pro-tom/" target="_blank" rel="noopener">linkedin.com/company/pro-tom</a>
+                    <i class="fa-brands fa-linkedin-in" style="color:#0a66c2; font-size:0.9rem; margin-top:2px; flex-shrink:0; width:14px;"></i>
+                    <a href="https://www.linkedin.com/company/pro-tom/" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.46); text-decoration:none; font-size:0.86rem; transition:color 0.2s;">Volg ons op LinkedIn</a>
                 </div>
             </div>
 
@@ -1398,6 +1470,34 @@
      JAVASCRIPT
 ================================================================ -->
 <script>
+    /* --- Preloader --- */
+    (function() {
+        const bar      = document.getElementById('preloaderBar');
+        const loader   = document.getElementById('preloader');
+        const duration = 1800;
+        const interval = 16;
+        let startTime  = null;
+
+        // Ease-in kwadratisch: langzaam starten, snel eindigen
+        function easeIn(t) { return t * t * t; }
+
+        function step(timestamp) {
+            if (!startTime) startTime = timestamp;
+            const elapsed  = timestamp - startTime;
+            const t        = Math.min(elapsed / duration, 1);
+            const progress = easeIn(t) * 100;
+            bar.style.width = progress + '%';
+
+            if (t < 1) {
+                requestAnimationFrame(step);
+            } else {
+                setTimeout(() => loader.classList.add('hidden'), 150);
+            }
+        }
+
+        requestAnimationFrame(step);
+    })();
+
     /* --- Navbar scroll shadow --- */
     const navbar = document.getElementById('navbar');
     const onScroll = () => {
@@ -1449,26 +1549,9 @@
     const submitBtn = document.getElementById('submitBtn');
 
     form.addEventListener('submit', e => {
-        e.preventDefault();
-        if (!form.checkValidity()) { form.reportValidity(); return; }
-
+        if (!form.checkValidity()) { e.preventDefault(); form.reportValidity(); return; }
         submitBtn.disabled = true;
         submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Verzenden…';
-
-        // Simulate async send
-        setTimeout(() => {
-            submitBtn.innerHTML = '<i class="fa-solid fa-check"></i> Aanvraag verzonden!';
-            submitBtn.style.background = 'linear-gradient(135deg, #22c55e, #16a34a)';
-            submitBtn.style.boxShadow = '0 4px 18px rgba(22,163,74,0.35)';
-
-            setTimeout(() => {
-                form.reset();
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = '<i class="fa-regular fa-paper-plane"></i> Verstuur aanvraag';
-                submitBtn.style.background = '';
-                submitBtn.style.boxShadow = '';
-            }, 3200);
-        }, 1400);
     });
 </script>
 <!-- Preview melding -->
