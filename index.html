@@ -4,6 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PROTOM — Groothandel Verf, Reiniging & Smeermiddelen</title>
+    <link rel="icon" href="/ProTom.svg" type="image/svg+xml">
+    <meta name="description" content="PROTOM is groothandel in verf, reinigingsmiddelen en oliën & smeermiddelen voor professionele afnemers. Snel geleverd, persoonlijk advies. Gevestigd in Beuningen.">
+    <meta name="robots" content="index, follow">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pro-tom.com/">
+    <meta property="og:title" content="PROTOM — Groothandel Verf, Reiniging & Smeermiddelen">
+    <meta property="og:description" content="Groothandel in verf, reinigingsmiddelen en oliën & smeermiddelen voor professionele afnemers. Snel geleverd, persoonlijk advies.">
+    <meta property="og:image" content="https://pro-tom.com/ProTom.svg">
+    <meta property="og:locale" content="nl_NL">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="PROTOM — Groothandel Verf, Reiniging & Smeermiddelen">
+    <meta name="twitter:description" content="Groothandel in verf, reinigingsmiddelen en oliën & smeermiddelen voor professionele afnemers.">
+    <!-- Google Analytics 4 — vervang G-XXXXXXXXXX met jouw Measurement ID via analytics.google.com -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
@@ -1179,6 +1194,44 @@
 
         /* Active nav */
         .nav-links a.active { color: #fff !important; font-weight: 600; }
+
+        /* ============================================================
+           BLOG KAARTEN
+        ============================================================ */
+        .blog-card {
+            background: #f0f4fb;
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid rgba(26,48,96,0.07);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+        }
+        .blog-card:hover { transform: translateY(-5px); box-shadow: 0 16px 48px rgba(26,48,96,0.12); }
+        .blog-cover {
+            height: 190px;
+            background: var(--gradient);
+            overflow: hidden;
+            position: relative;
+        }
+        .blog-cover img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+        .blog-card:hover .blog-cover img { transform: scale(1.05); }
+        .blog-cover-icon {
+            width: 100%; height: 100%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2.5rem; color: rgba(255,255,255,0.25);
+        }
+        .blog-body { padding: 26px 24px; flex: 1; display: flex; flex-direction: column; }
+        .blog-date { font-size: 0.72rem; color: #a0aec0; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; margin-bottom: 10px; font-family: 'Barlow Condensed', sans-serif; }
+        .blog-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1.3rem; text-transform: uppercase; color: var(--primary); margin-bottom: 12px; line-height: 1.1; }
+        .blog-excerpt { font-size: 0.875rem; color: #5a6a8a; line-height: 1.7; flex: 1; margin-bottom: 20px; }
+        .blog-link { color: var(--secondary); font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.82rem; letter-spacing: 0.07em; text-transform: uppercase; display: inline-flex; align-items: center; gap: 6px; transition: gap 0.2s; }
+        .blog-card:hover .blog-link { gap: 10px; }
+
+        @media (max-width: 900px) { #blogGrid { grid-template-columns: repeat(2,1fr) !important; } }
+        @media (max-width: 600px) { #blogGrid { grid-template-columns: 1fr !important; } }
     </style>
 </head>
 <body>
@@ -1535,6 +1588,24 @@
 
 
 <!-- ================================================================
+     BLOG SECTIE
+================================================================ -->
+<section id="blog" style="padding: 108px 0; background: white;">
+    <div class="container">
+        <div class="section-header fade-up">
+            <span class="section-label">Kennis & nieuws</span>
+            <h2>Laatste artikelen</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+        <div id="blogGrid" style="display:grid; grid-template-columns: repeat(3,1fr); gap:28px; margin-bottom:48px;"></div>
+        <div style="text-align:center;" class="fade-up">
+            <a href="blog.html" class="btn btn-primary">Alle artikelen bekijken <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+    </div>
+</section>
+
+
+<!-- ================================================================
      CONTACT / CTA
 ================================================================ -->
 <section id="contact">
@@ -1690,8 +1761,8 @@
         <div class="footer-bottom">
             <span>© 2026 Protom. Alle rechten voorbehouden.</span>
             <div class="footer-legal">
-                <a href="#">Privacybeleid</a>
-                <a href="#">Algemene voorwaarden</a>
+                <a href="privacybeleid.html">Privacybeleid</a>
+                <a href="privacybeleid.html">Algemene voorwaarden</a>
             </div>
         </div>
     </div>
@@ -1934,6 +2005,95 @@
     to   { opacity: 1; transform: translateY(0); }
 }
 </style>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+    (function() {
+        const { createClient } = window.supabase;
+        const sb = createClient(
+            'https://hbzcgivqtgjuwyjguleq.supabase.co',
+            'sb_publishable_mxWsNZyZieJeGFyev_Isvw_Tna758b_'
+        );
+
+        const PLACEHOLDERS = [
+            {
+                title: 'Hoe kies je de juiste verf voor industriële toepassingen?',
+                excerpt: 'De keuze van de juiste verf hangt af van meerdere factoren: ondergrond, omgeving en gewenste levensduur. In dit artikel leggen we de basisprincipes uit.',
+                date: '15 januari 2026',
+                icon: 'fa-paint-roller'
+            },
+            {
+                title: 'Reinigingsmiddelen: efficiëntie en veiligheid in balans',
+                excerpt: 'Professionele reinigingsmiddelen vragen om een zorgvuldige selectie. We bespreken waar je op moet letten bij industriële schoonmaakproducten.',
+                date: '8 februari 2026',
+                icon: 'fa-spray-can-sparkles'
+            },
+            {
+                title: 'Smeermiddelen verlengd de levensduur van uw machines',
+                excerpt: 'Goed onderhoud begint bij de juiste smering. Ontdek welke oliën en vetten het meest geschikt zijn voor uw specifieke toepassingen.',
+                date: '3 maart 2026',
+                icon: 'fa-gear'
+            }
+        ];
+
+        function placeholderCard(p) {
+            return `
+                <a href="blog.html" class="blog-card">
+                    <div class="blog-cover" style="display:flex;align-items:center;justify-content:center;">
+                        <i class="fa-solid ${p.icon}" style="font-size:2.8rem;color:rgba(255,255,255,0.35);"></i>
+                    </div>
+                    <div class="blog-body">
+                        <div class="blog-date">${p.date}</div>
+                        <div class="blog-title">${p.title}</div>
+                        <p class="blog-excerpt">${p.excerpt}</p>
+                        <span class="blog-link">Lees verder <i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+                </a>`;
+        }
+
+        function realCard(post) {
+            const date = new Date(post.created_at).toLocaleDateString('nl-NL', { day: 'numeric', month: 'long', year: 'numeric' });
+            const cover = post.cover_image
+                ? `<img src="${post.cover_image}" alt="${post.title}" loading="lazy" style="width:100%;height:100%;object-fit:cover;">`
+                : `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;"><i class="fa-regular fa-newspaper" style="font-size:2.8rem;color:rgba(255,255,255,0.35);"></i></div>`;
+            return `
+                <a href="blog-post.html?slug=${post.slug}" class="blog-card">
+                    <div class="blog-cover">${cover}</div>
+                    <div class="blog-body">
+                        <div class="blog-date">${date}</div>
+                        <div class="blog-title">${post.title}</div>
+                        ${post.excerpt ? `<p class="blog-excerpt">${post.excerpt}</p>` : ''}
+                        <span class="blog-link">Lees verder <i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+                </a>`;
+        }
+
+        async function loadBlogPosts() {
+            const grid = document.getElementById('blogGrid');
+            if (!grid) return;
+            try {
+                const { data: posts, error } = await sb
+                    .from('blog_posts')
+                    .select('id, title, slug, excerpt, cover_image, created_at')
+                    .eq('published', true)
+                    .order('created_at', { ascending: false })
+                    .limit(3);
+
+                if (error || !posts || posts.length === 0) {
+                    grid.innerHTML = PLACEHOLDERS.map(placeholderCard).join('');
+                } else {
+                    const cards = posts.map(realCard);
+                    while (cards.length < 3) cards.push(placeholderCard(PLACEHOLDERS[cards.length]));
+                    grid.innerHTML = cards.join('');
+                }
+            } catch(e) {
+                grid.innerHTML = PLACEHOLDERS.map(placeholderCard).join('');
+            }
+        }
+
+        loadBlogPosts();
+    })();
+</script>
 
 </body>
 </html>

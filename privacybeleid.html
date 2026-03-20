@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacybeleid — PROTOM</title>
+    <link rel="icon" href="/ProTom.svg" type="image/svg+xml">
+    <meta name="robots" content="noindex, nofollow">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        :root {
+            --primary: #1a3060;
+            --gradient: linear-gradient(135deg, #4d8ae8 0%, #1a3060 100%);
+        }
+        body { font-family: 'Barlow', sans-serif; background: #f0f4fb; color: #1a2540; -webkit-font-smoothing: antialiased; }
+
+        nav {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(26,48,96,0.95);
+            backdrop-filter: blur(14px);
+            height: 72px; display: flex; align-items: center;
+            padding: 0 32px;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.15);
+        }
+        .nav-inner { max-width: 1200px; margin: 0 auto; width: 100%; display: flex; align-items: center; justify-content: space-between; }
+        .logo { display: flex; align-items: center; text-decoration: none; }
+        .logo img { height: 44px; width: auto; }
+        .nav-links { display: flex; gap: 32px; list-style: none; }
+        .nav-links a { color: rgba(255,255,255,0.72); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
+        .nav-links a:hover { color: #fff; }
+        .btn-nav-cta { background: #fff; color: #1a3060; padding: 9px 22px; border-radius: 7px; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.88rem; letter-spacing: 0.05em; text-transform: uppercase; text-decoration: none; transition: background 0.2s; white-space: nowrap; }
+        .btn-nav-cta:hover { background: #e8eef8; }
+
+        .page-hero {
+            background: var(--gradient);
+            padding: 72px 32px 64px;
+            text-align: center;
+        }
+        .page-hero h1 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: clamp(2rem, 5vw, 3.2rem); text-transform: uppercase; color: #fff; letter-spacing: 0.02em; margin-bottom: 12px; }
+        .page-hero p { color: rgba(255,255,255,0.7); font-size: 0.95rem; }
+
+        .content-wrap { max-width: 760px; margin: 0 auto; padding: 64px 32px 96px; }
+        .content-card { background: white; border-radius: 16px; padding: 48px 52px; border: 1px solid rgba(26,48,96,0.07); box-shadow: 0 4px 24px rgba(0,0,0,0.04); }
+
+        .content-card h2 { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1.5rem; text-transform: uppercase; color: #1a3060; margin: 36px 0 12px; }
+        .content-card h2:first-child { margin-top: 0; }
+        .content-card h3 { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1.15rem; text-transform: uppercase; color: #1a3060; margin: 24px 0 8px; }
+        .content-card p { font-size: 0.93rem; line-height: 1.85; color: #3a4a6a; margin-bottom: 14px; }
+        .content-card ul { padding-left: 22px; margin-bottom: 14px; }
+        .content-card li { font-size: 0.93rem; line-height: 1.8; color: #3a4a6a; margin-bottom: 4px; }
+        .content-card a { color: #2757b8; text-decoration: underline; }
+        .content-card strong { color: #1a3060; font-weight: 600; }
+        .update-date { font-size: 0.78rem; color: #a0aec0; margin-bottom: 32px; padding-bottom: 24px; border-bottom: 1px solid rgba(26,48,96,0.07); }
+
+        footer { background: #0d1a38; padding: 48px 32px; }
+        .footer-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+        .footer-logo img { height: 36px; width: auto; opacity: 0.75; }
+        .footer-copy { color: rgba(255,255,255,0.32); font-size: 0.82rem; }
+        .footer-copy a { color: rgba(255,255,255,0.32); text-decoration: none; }
+        .footer-copy a:hover { color: rgba(255,255,255,0.6); }
+
+        @media (max-width: 768px) {
+            .content-card { padding: 28px 24px; }
+            .nav-links { display: none; }
+            .footer-inner { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-inner">
+        <a href="index.html" class="logo"><img src="ProTom.svg" alt="PROTOM"></a>
+        <ul class="nav-links">
+            <li><a href="index.html#producten">Producten</a></li>
+            <li><a href="index.html#over">Over ons</a></li>
+            <li><a href="index.html#sectoren">Sectoren</a></li>
+            <li><a href="index.html#merken">Merken</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+        <a href="index.html#contact" class="btn-nav-cta">Offerte aanvragen</a>
+    </div>
+</nav>
+
+<div class="page-hero">
+    <h1>Privacybeleid</h1>
+    <p>Laatst bijgewerkt: maart 2026</p>
+</div>
+
+<div class="content-wrap">
+    <div class="content-card">
+        <p class="update-date">Versie: 1.0 — maart 2026</p>
+
+        <h2>1. Wie zijn wij?</h2>
+        <p>PROTOM is een groothandel in verf, reinigingsmiddelen en oliën &amp; smeermiddelen voor professionele afnemers.</p>
+        <p><strong>Vestigingsadres:</strong> Goudwerf 2, 6641 TG Beuningen<br>
+        <strong>E-mailadres:</strong> <a href="mailto:tom@pro-tom.com">tom@pro-tom.com</a><br>
+        <strong>Website:</strong> <a href="https://pro-tom.com">pro-tom.com</a></p>
+        <p>PROTOM is verantwoordelijk voor de verwerking van persoonsgegevens zoals beschreven in dit privacybeleid.</p>
+
+        <h2>2. Welke gegevens verzamelen wij?</h2>
+        <h3>2.1 Contactformulier</h3>
+        <p>Wanneer u het contactformulier op onze website invult, verwerken wij de volgende gegevens:</p>
+        <ul>
+            <li>Naam</li>
+            <li>Bedrijfsnaam</li>
+            <li>E-mailadres</li>
+            <li>Telefoonnummer (optioneel)</li>
+            <li>De inhoud van uw bericht</li>
+        </ul>
+
+        <h3>2.2 Websitebezoek &amp; analytics</h3>
+        <p>Wij maken gebruik van <strong>Google Analytics 4</strong> om inzicht te krijgen in het gebruik van onze website. Hierbij worden geanonimiseerde bezoekersgegevens verzameld, zoals:</p>
+        <ul>
+            <li>Bezochte pagina's en sessieduur</li>
+            <li>Type apparaat en browser</li>
+            <li>Land/regio van herkomst (geanonimiseerd)</li>
+        </ul>
+        <p>Google Analytics plaatst hiervoor cookies. Uw IP-adres wordt geanonimiseerd vóór opslag. Zie ook het <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">privacybeleid van Google</a>.</p>
+
+        <h2>3. Waarvoor gebruiken wij uw gegevens?</h2>
+        <p>Wij verwerken uw persoonsgegevens uitsluitend voor de volgende doeleinden:</p>
+        <ul>
+            <li>Het beantwoorden van uw contactverzoek of offerte-aanvraag</li>
+            <li>Het verbeteren van onze website op basis van gebruiksstatistieken</li>
+        </ul>
+
+        <h2>4. Grondslag voor verwerking</h2>
+        <p>De verwerking van uw gegevens via het contactformulier vindt plaats op basis van <strong>gerechtvaardigd belang</strong> (art. 6 lid 1 sub f AVG) — namelijk het kunnen beantwoorden van uw zakelijke vraag of aanvraag.</p>
+        <p>De verwerking via Google Analytics vindt plaats op basis van <strong>toestemming</strong> (art. 6 lid 1 sub a AVG) dan wel gerechtvaardigd belang.</p>
+
+        <h2>5. Bewaartermijn</h2>
+        <p>Uw contactgegevens worden niet langer bewaard dan noodzakelijk voor het doel waarvoor zij zijn verzameld. In de praktijk betekent dit dat wij berichten bewaren zolang de zakelijke relatie actief is of totdat u verzoekt om verwijdering.</p>
+
+        <h2>6. Delen met derden</h2>
+        <p>Wij verkopen uw persoonsgegevens niet aan derden. Wij delen gegevens uitsluitend met:</p>
+        <ul>
+            <li><strong>Netlify</strong> — onze hostingprovider, die formulierinzendingen ontvangt (privacybeleid: <a href="https://www.netlify.com/privacy/" target="_blank" rel="noopener">netlify.com/privacy</a>)</li>
+            <li><strong>Google LLC</strong> — voor analytische doeleinden via Google Analytics</li>
+        </ul>
+        <p>Beide partijen verwerken gegevens conform de AVG en beschikken over passende verwerkersovereenkomsten.</p>
+
+        <h2>7. Uw rechten</h2>
+        <p>Op grond van de Algemene Verordening Gegevensbescherming (AVG) heeft u de volgende rechten:</p>
+        <ul>
+            <li><strong>Recht op inzage</strong> — u kunt opvragen welke gegevens wij van u verwerken</li>
+            <li><strong>Recht op rectificatie</strong> — u kunt onjuiste gegevens laten corrigeren</li>
+            <li><strong>Recht op verwijdering</strong> — u kunt verzoeken om verwijdering van uw gegevens</li>
+            <li><strong>Recht op bezwaar</strong> — u kunt bezwaar maken tegen de verwerking van uw gegevens</li>
+            <li><strong>Recht op beperking</strong> — u kunt vragen de verwerking tijdelijk te beperken</li>
+        </ul>
+        <p>Stuurt u uw verzoek naar <a href="mailto:tom@pro-tom.com">tom@pro-tom.com</a>. Wij reageren binnen 30 dagen.</p>
+        <p>Heeft u een klacht over de manier waarop wij met uw gegevens omgaan? Dan kunt u een klacht indienen bij de <strong>Autoriteit Persoonsgegevens</strong>: <a href="https://www.autoriteitpersoonsgegevens.nl" target="_blank" rel="noopener">autoriteitpersoonsgegevens.nl</a>.</p>
+
+        <h2>8. Beveiliging</h2>
+        <p>Wij nemen passende technische en organisatorische maatregelen om uw persoonsgegevens te beschermen tegen verlies, misbruik of onbevoegde toegang. Onze website maakt gebruik van een beveiligde HTTPS-verbinding.</p>
+
+        <h2>9. Wijzigingen in dit beleid</h2>
+        <p>Wij kunnen dit privacybeleid van tijd tot tijd aanpassen. De meest actuele versie is altijd beschikbaar op deze pagina. De datum bovenaan geeft aan wanneer het beleid voor het laatst is bijgewerkt.</p>
+
+        <h2>10. Contact</h2>
+        <p>Voor vragen over dit privacybeleid kunt u contact opnemen via:</p>
+        <p><strong>E-mail:</strong> <a href="mailto:tom@pro-tom.com">tom@pro-tom.com</a><br>
+        <strong>Adres:</strong> Goudwerf 2, 6641 TG Beuningen</p>
+    </div>
+</div>
+
+<footer>
+    <div class="footer-inner">
+        <div class="footer-logo"><img src="ProTom.svg" alt="PROTOM"></div>
+        <p class="footer-copy">© 2026 Protom. Alle rechten voorbehouden. — <a href="index.html">Terug naar de website</a></p>
+    </div>
+</footer>
+
+</body>
+</html>

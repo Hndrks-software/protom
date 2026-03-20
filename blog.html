@@ -4,74 +4,136 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog — PROTOM</title>
+    <link rel="icon" href="/ProTom.svg" type="image/svg+xml">
+    <meta name="description" content="Lees het laatste nieuws, tips en vakkennis van PROTOM over verf, reinigingsmiddelen en smeermiddelen.">
+    <meta name="robots" content="index, follow">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pro-tom.com/blog.html">
+    <meta property="og:title" content="Blog — PROTOM">
+    <meta property="og:description" content="Lees het laatste nieuws, tips en vakkennis van PROTOM over verf, reinigingsmiddelen en smeermiddelen.">
+    <meta property="og:image" content="https://pro-tom.com/ProTom.svg">
+    <meta property="og:locale" content="nl_NL">
+    <!-- Google Analytics 4 — vervang G-XXXXXXXXXX met jouw Measurement ID -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
-        body { font-family: 'Barlow', sans-serif; background: #f0f4fb; color: #1a2540; -webkit-font-smoothing: antialiased; }
+        :root {
+            --primary:  #1a3060;
+            --accent:   #4d8ae8;
+            --bg:       #f0f4fb;
+            --gradient: linear-gradient(135deg, #4d8ae8 0%, #1a3060 100%);
+        }
+        body { font-family: 'Barlow', sans-serif; background: var(--bg); color: #1a2540; -webkit-font-smoothing: antialiased; }
 
+        /* ── Nav ── */
         nav {
             position: sticky; top: 0; z-index: 100;
-            background: rgba(26,48,96,0.92);
+            background: rgba(26,48,96,0.95);
             backdrop-filter: blur(14px);
-            height: 70px; display: flex; align-items: center;
-            padding: 0 28px;
+            height: 72px; display: flex; align-items: center;
+            padding: 0 32px;
             box-shadow: 0 2px 20px rgba(0,0,0,0.15);
         }
         .nav-inner { max-width: 1200px; margin: 0 auto; width: 100%; display: flex; align-items: center; justify-content: space-between; }
         .logo { display: flex; align-items: center; text-decoration: none; }
-        .logo img { height: 38px; width: auto; }
-        .nav-links { display: flex; gap: 28px; list-style: none; }
-        .nav-links a { color: rgba(255,255,255,0.75); text-decoration: none; font-size: 0.88rem; font-weight: 500; transition: color 0.2s; }
+        .logo img { height: 40px; width: auto; }
+        .nav-links { display: flex; gap: 32px; list-style: none; }
+        .nav-links a { color: rgba(255,255,255,0.72); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
         .nav-links a:hover, .nav-links a.active { color: #fff; }
-        .btn-cta { background: #fff; color: #1a3060; padding: 9px 20px; border-radius: 7px; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.88rem; letter-spacing: 0.05em; text-transform: uppercase; text-decoration: none; transition: all 0.2s; }
-        .btn-cta:hover { background: #f0f4fb; }
+        .btn-nav-cta {
+            background: #fff; color: #1a3060;
+            padding: 9px 22px; border-radius: 7px;
+            font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+            font-size: 0.88rem; letter-spacing: 0.05em; text-transform: uppercase;
+            text-decoration: none; transition: background 0.2s;
+            white-space: nowrap;
+        }
+        .btn-nav-cta:hover { background: #e8eef8; }
 
-        /* Hero */
+        /* ── Hero ── */
         .blog-hero {
-            background: linear-gradient(135deg, #4d8ae8, #1a3060);
-            padding: 80px 28px 72px;
+            background: var(--gradient);
+            padding: 88px 32px 80px;
             text-align: center;
         }
-        .blog-hero .label { display: inline-block; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.88); padding: 5px 16px; border-radius: 100px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 20px; }
-        .blog-hero h1 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: clamp(2.2rem, 5vw, 3.8rem); text-transform: uppercase; color: #fff; margin-bottom: 14px; }
-        .blog-hero p { font-size: 1rem; color: rgba(255,255,255,0.7); max-width: 500px; margin: 0 auto; line-height: 1.7; }
+        .blog-hero .label {
+            display: inline-block;
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: rgba(255,255,255,0.9);
+            padding: 5px 18px; border-radius: 100px;
+            font-size: 0.72rem; font-weight: 700;
+            letter-spacing: 0.12em; text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+        .blog-hero h1 {
+            font-family: 'Barlow Condensed', sans-serif; font-weight: 900;
+            font-size: clamp(2.4rem, 5vw, 4rem); text-transform: uppercase;
+            color: #fff; margin-bottom: 16px; letter-spacing: 0.02em;
+        }
+        .blog-hero p { font-size: 1rem; color: rgba(255,255,255,0.7); max-width: 520px; margin: 0 auto; line-height: 1.7; }
 
-        /* Posts grid */
-        .posts-section { max-width: 1200px; margin: 0 auto; padding: 72px 28px; }
+        /* ── Posts grid ── */
+        .posts-section { max-width: 1200px; margin: 0 auto; padding: 80px 32px 100px; }
         .posts-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
 
         .post-card {
             background: white; border-radius: 14px; overflow: hidden;
             border: 1px solid rgba(26,48,96,0.07);
             transition: transform 0.3s, box-shadow 0.3s;
-            text-decoration: none; color: inherit; display: flex; flex-direction: column;
+            text-decoration: none; color: inherit;
+            display: flex; flex-direction: column;
         }
         .post-card:hover { transform: translateY(-5px); box-shadow: 0 16px 48px rgba(26,48,96,0.12); }
-        .post-cover { height: 200px; background: linear-gradient(135deg, #4d8ae8, #1a3060); overflow: hidden; }
+        .post-cover {
+            height: 200px; background: var(--gradient); overflow: hidden;
+            display: flex; align-items: center; justify-content: center;
+        }
         .post-cover img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
         .post-card:hover .post-cover img { transform: scale(1.05); }
-        .post-cover-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; color: rgba(255,255,255,0.3); }
         .post-body { padding: 26px 24px; flex: 1; display: flex; flex-direction: column; }
         .post-date { font-size: 0.75rem; color: #a0aec0; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 10px; }
-        .post-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1.35rem; text-transform: uppercase; color: #1a3060; margin-bottom: 12px; line-height: 1.1; }
+        .post-title {
+            font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
+            font-size: 1.35rem; text-transform: uppercase;
+            color: var(--primary); margin-bottom: 12px; line-height: 1.1;
+        }
         .post-excerpt { font-size: 0.875rem; color: #5a6a8a; line-height: 1.7; flex: 1; margin-bottom: 20px; }
-        .post-link { color: #2757b8; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.82rem; letter-spacing: 0.07em; text-transform: uppercase; display: inline-flex; align-items: center; gap: 6px; transition: gap 0.2s; }
+        .post-link {
+            color: #2757b8; font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700; font-size: 0.82rem; letter-spacing: 0.07em;
+            text-transform: uppercase; display: inline-flex; align-items: center;
+            gap: 6px; transition: gap 0.2s;
+        }
         .post-card:hover .post-link { gap: 10px; }
 
-        .loading-state, .empty-state { text-align: center; padding: 80px 24px; color: #8a9ab8; grid-column: 1/-1; }
+        .loading-state, .empty-state {
+            text-align: center; padding: 80px 24px; color: #8a9ab8; grid-column: 1/-1;
+        }
         .loading-state i, .empty-state i { font-size: 2.5rem; margin-bottom: 16px; display: block; opacity: 0.4; }
 
-        footer { background: #0d1a38; padding: 40px 28px; text-align: center; }
-        footer p { color: rgba(255,255,255,0.35); font-size: 0.82rem; }
-        footer a { color: rgba(255,255,255,0.35); text-decoration: none; }
+        /* ── Footer ── */
+        footer { background: #0d1a38; padding: 48px 32px; }
+        .footer-inner {
+            max-width: 1200px; margin: 0 auto;
+            display: flex; align-items: center; justify-content: space-between; gap: 24px;
+            flex-wrap: wrap;
+        }
+        .footer-logo img { height: 36px; width: auto; opacity: 0.75; }
+        .footer-copy { color: rgba(255,255,255,0.32); font-size: 0.82rem; }
+        .footer-copy a { color: rgba(255,255,255,0.32); text-decoration: none; }
+        .footer-copy a:hover { color: rgba(255,255,255,0.6); }
 
         @media (max-width: 900px) { .posts-grid { grid-template-columns: repeat(2, 1fr); } }
         @media (max-width: 600px) {
             .posts-grid { grid-template-columns: 1fr; }
             .nav-links { display: none; }
+            .footer-inner { flex-direction: column; text-align: center; }
         }
     </style>
 </head>
@@ -81,29 +143,33 @@
     <div class="nav-inner">
         <a href="/" class="logo"><img src="ProTom.svg" alt="PROTOM"></a>
         <ul class="nav-links">
-            <li><a href="/#producten">Producten</a></li>
-            <li><a href="/#over">Over ons</a></li>
-            <li><a href="/#sectoren">Sectoren</a></li>
-            <li><a href="blog.html" class="active">Blog</a></li>
+            <li><a href="index.html#producten">Producten</a></li>
+            <li><a href="index.html#over">Over ons</a></li>
+            <li><a href="index.html#sectoren">Sectoren</a></li>
+            <li><a href="index.html#merken">Merken</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
         </ul>
-        <a href="/#contact" class="btn-cta">Offerte aanvragen</a>
+        <a href="index.html#contact" class="btn-nav-cta">Offerte aanvragen</a>
     </div>
 </nav>
 
 <div class="blog-hero">
-    <span class="label">Kennis & nieuws</span>
+    <span class="label">Kennis &amp; nieuws</span>
     <h1>Blog</h1>
     <p>Het laatste nieuws, tips en inzichten vanuit PROTOM.</p>
 </div>
 
 <section class="posts-section">
     <div class="posts-grid" id="postsGrid">
-        <div class="loading-state"><i class="fa-solid fa-spinner fa-spin"></i><p>Artikelen laden...</p></div>
+        <div class="loading-state"><i class="fa-solid fa-spinner fa-spin"></i><p>Artikelen laden…</p></div>
     </div>
 </section>
 
 <footer>
-    <p>© 2026 Protom. Alle rechten voorbehouden. — <a href="/">Terug naar de website</a></p>
+    <div class="footer-inner">
+        <div class="footer-logo"><img src="ProTom.svg" alt="PROTOM"></div>
+        <p class="footer-copy">© 2026 Protom. Alle rechten voorbehouden. — <a href="index.html">Terug naar de website</a></p>
+    </div>
 </footer>
 
 <script>
@@ -131,15 +197,14 @@
             const date  = new Date(post.created_at).toLocaleDateString('nl-NL', { day: 'numeric', month: 'long', year: 'numeric' });
             const cover = post.cover_image
                 ? `<img src="${post.cover_image}" alt="${post.title}" loading="lazy">`
-                : `<div class="post-cover-placeholder"><i class="fa-regular fa-newspaper"></i></div>`;
-            const excerpt = post.excerpt || '';
+                : `<i class="fa-regular fa-newspaper" style="font-size:2.8rem;color:rgba(255,255,255,0.3);"></i>`;
             return `
                 <a href="blog-post.html?slug=${post.slug}" class="post-card">
                     <div class="post-cover">${cover}</div>
                     <div class="post-body">
                         <div class="post-date">${date}</div>
                         <div class="post-title">${post.title}</div>
-                        ${excerpt ? `<p class="post-excerpt">${excerpt}</p>` : ''}
+                        ${post.excerpt ? `<p class="post-excerpt">${post.excerpt}</p>` : ''}
                         <span class="post-link">Lees verder <i class="fa-solid fa-arrow-right"></i></span>
                     </div>
                 </a>`;
