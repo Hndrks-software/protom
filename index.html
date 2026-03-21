@@ -282,7 +282,9 @@
         ============================================================ */
         #hero {
             min-height: 100vh;
-            background: var(--gradient);
+            background:
+                linear-gradient(135deg, rgba(77,138,232,0.88) 0%, rgba(26,48,96,0.96) 100%),
+                url('https://images.unsplash.com/photo-1632605185825-fd583793fa73?w=1920&q=80&auto=format&fit=crop') center/cover no-repeat;
             position: relative;
             display: flex;
             align-items: center;
@@ -513,7 +515,7 @@
 
         /* Left visual column */
         .about-visual {
-            background: var(--gradient);
+            background: #0d1a38;
             border-radius: 18px;
             padding: 56px 48px;
             color: #fff;
@@ -524,15 +526,53 @@
             flex-direction: column;
             justify-content: flex-end;
         }
+        .about-photo {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+        }
         .about-visual::before {
             content: '';
             position: absolute;
             inset: 0;
-            background-image:
-                linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
-            background-size: 32px 32px;
+            background: linear-gradient(to top, rgba(10,20,50,0.97) 0%, rgba(10,20,50,0.65) 55%, rgba(10,20,50,0.15) 100%);
+            z-index: 1;
         }
+        .about-visual > * { position: relative; z-index: 2; }
+        .about-person {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.14);
+            border-radius: 10px;
+            padding: 12px 18px;
+            margin-top: 20px;
+        }
+        .person-avatar {
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            background: var(--gradient);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1rem; color: #fff; flex-shrink: 0;
+        }
+        .person-name { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.06em; }
+        .person-title { font-size: 0.76rem; color: rgba(255,255,255,0.6); margin-top: 1px; }
+        .card-photo {
+            margin: -42px -34px 28px;
+            height: 180px;
+            overflow: hidden;
+            border-radius: 14px 14px 0 0;
+        }
+        .card-photo img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        .product-card:hover .card-photo img { transform: scale(1.05); }
         .av-deco {
             position: absolute;
             top: 44px;
@@ -1415,18 +1455,27 @@
 
         <div class="products-grid">
             <div class="product-card fade-up d1">
+                <div class="card-photo">
+                    <img src="https://images.unsplash.com/photo-1632605185825-fd583793fa73?w=800&q=80&auto=format&fit=crop" alt="Autolak en non-paint" loading="lazy">
+                </div>
                 <div class="prod-icon"><i class="fa-solid fa-spray-can-sparkles"></i></div>
                 <h3>Paint & Non-paint</h3>
                 <p>Van MIPA autolak tot schuurmaterialen, tape en afplakproducten. Alles voor een professioneel spuit- en schadeherstelproces.</p>
                 <a href="#contact" class="card-link">Meer informatie <i class="fa-solid fa-arrow-right"></i></a>
             </div>
             <div class="product-card fade-up d2">
+                <div class="card-photo">
+                    <img src="https://images.unsplash.com/photo-1746014994987-e1d531ed9cc4?w=800&q=80&auto=format&fit=crop" alt="Reinigingsmiddelen" loading="lazy">
+                </div>
                 <div class="prod-icon"><i class="fa-solid fa-soap"></i></div>
                 <h3>Reinigingsmiddelen</h3>
                 <p>Krachtige reinigers voor voertuigen, werkplaatsen en zwaar materieel. Effectief, veilig en geschikt voor dagelijks professioneel gebruik.</p>
                 <a href="#contact" class="card-link">Meer informatie <i class="fa-solid fa-arrow-right"></i></a>
             </div>
             <div class="product-card fade-up d3">
+                <div class="card-photo">
+                    <img src="https://images.unsplash.com/photo-1567016958860-87d898933af1?w=800&q=80&auto=format&fit=crop" alt="Oliën en smeermiddelen" loading="lazy">
+                </div>
                 <div class="prod-icon"><i class="fa-solid fa-oil-can"></i></div>
                 <h3>Oliën & Smeermiddelen</h3>
                 <p>Motorolie, transmissieolie, hydraulische olie en vetten voor auto's, trucks, kranen en heftrucks. Altijd de juiste specificatie.</p>
@@ -1445,10 +1494,17 @@
         <div class="about-grid">
             <!-- Left: visual block -->
             <div class="about-visual fade-up">
-                <div class="av-deco" aria-hidden="true"><i class="fa-solid fa-industry"></i></div>
+                <img src="tom.jpg" alt="Specialist Automotive Supplies" class="about-photo">
                 <span class="av-tag">Over PROTOM</span>
                 <h3>Uw Betrouwbare Partner in Automotive Supplies</h3>
                 <p>In de automotive sector draait alles om kwaliteit, betrouwbaarheid en snelheid. Wij combineren hoogwaardige producten met persoonlijke service en korte communicatielijnen. Geen grote anonieme organisatie, maar een specialist die begrijpt wat er speelt op uw werkvloer.</p>
+                <div class="about-person">
+                    <div class="person-avatar"><i class="fa-solid fa-user-tie"></i></div>
+                    <div>
+                        <div class="person-name">Specialist</div>
+                        <div class="person-title">Automotive Supplies</div>
+                    </div>
+                </div>
             </div>
 
             <!-- Right: USPs -->
