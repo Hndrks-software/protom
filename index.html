@@ -517,50 +517,59 @@
         .about-visual {
             background: #0d1a38;
             border-radius: 18px;
-            padding: 56px 48px;
+            padding: 44px 44px 40px;
             color: #fff;
             position: relative;
             overflow: hidden;
-            min-height: 500px;
+            min-height: 560px;
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
         }
         .about-photo {
-            position: absolute;
+            position: absolute !important;
             inset: 0;
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: center top;
+            object-position: center 12%;
+            z-index: 0;
         }
         .about-visual::before {
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(to top, rgba(10,20,50,0.97) 0%, rgba(10,20,50,0.65) 55%, rgba(10,20,50,0.15) 100%);
+            background: linear-gradient(to top,
+                rgba(8,16,40,0.98) 0%,
+                rgba(8,16,40,0.82) 40%,
+                rgba(8,16,40,0.30) 70%,
+                rgba(8,16,40,0.05) 100%);
             z-index: 1;
         }
-        .about-visual > * { position: relative; z-index: 2; }
+        .about-visual > *:not(.about-photo) { position: relative; z-index: 2; }
         .about-person {
             display: flex;
             align-items: center;
             gap: 14px;
-            background: rgba(255,255,255,0.08);
-            border: 1px solid rgba(255,255,255,0.14);
-            border-radius: 10px;
-            padding: 12px 18px;
-            margin-top: 20px;
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.13);
+            border-radius: 12px;
+            padding: 14px 20px;
+            margin-top: 22px;
+            backdrop-filter: blur(6px);
         }
         .person-avatar {
-            width: 40px; height: 40px;
+            width: 44px; height: 44px;
             border-radius: 50%;
-            background: var(--gradient);
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1rem; color: #fff; flex-shrink: 0;
+            overflow: hidden;
+            flex-shrink: 0;
+            border: 2px solid rgba(255,255,255,0.25);
+        }
+        .person-avatar img {
+            width: 100%; height: 100%; object-fit: cover; object-position: center top;
         }
         .person-name { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.06em; }
-        .person-title { font-size: 0.76rem; color: rgba(255,255,255,0.6); margin-top: 1px; }
+        .person-title { font-size: 0.76rem; color: rgba(255,255,255,0.55); margin-top: 2px; font-weight: 500; }
         .card-photo {
             margin: -42px -34px 28px;
             height: 180px;
@@ -1499,7 +1508,7 @@
                 <h3>Uw Betrouwbare Partner in Automotive Supplies</h3>
                 <p>In de automotive sector draait alles om kwaliteit, betrouwbaarheid en snelheid. Wij combineren hoogwaardige producten met persoonlijke service en korte communicatielijnen. Geen grote anonieme organisatie, maar een specialist die begrijpt wat er speelt op uw werkvloer.</p>
                 <div class="about-person">
-                    <div class="person-avatar"><i class="fa-solid fa-user-tie"></i></div>
+                    <div class="person-avatar"><img src="tom.jpg" alt="Specialist"></div>
                     <div>
                         <div class="person-name">Specialist</div>
                         <div class="person-title">Automotive Supplies</div>
